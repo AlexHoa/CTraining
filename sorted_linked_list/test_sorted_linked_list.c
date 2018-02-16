@@ -92,6 +92,7 @@ int main()
     struct ListElement mySortedList;
     struct ListElement myListToSort;
     mySortedList.head=NULL;
+    
     // Declaration of several elements of myList and check memory allocation
     struct Element *ElementTest1 = malloc(sizeof(struct Element));
 
@@ -162,6 +163,99 @@ int main()
     }
 
     printf("end of test insertDataSortedLinkedList / sortListByInsertion\n");
+    
+    /*Begin of the test sortListBySelection*/
+    printf("begin of the test sortListBySelection\n");
+
+    // Declaration of the lists
+    struct ListElement ListToSort;
+    ListToSort.head=NULL;
+    
+    // Declaration of several elements of myList and check memory allocation
+    struct Element *Element1 = malloc(sizeof(struct Element));
+
+    if (Element1)
+    {
+        Element1->data = 8;
+        Element1->next = NULL;
+        PushBackElement_For(&ListToSort, Element1);
+    }
+    
+    struct Element *Element2 = malloc(sizeof(struct Element));
+
+    if (Element2)
+    {
+        Element2->data = 6;
+        Element2->next = NULL;
+        PushBackElement_For(&ListToSort, Element2);
+    }
+    
+    struct Element *Element3 = malloc(sizeof(struct Element));
+
+    if (Element3)
+    {
+        Element3->data = 9;
+        Element3->next = NULL;
+        PushBackElement_For(&ListToSort, Element3);
+    }
+    
+    struct Element *Element4 = malloc(sizeof(struct Element));
+
+    if (Element4)
+    {
+        Element4->data = 1;
+        Element4->next = NULL;
+        PushBackElement_For(&ListToSort, Element4);
+    }
+    
+    struct Element *Element5 = malloc(sizeof(struct Element));
+
+    if (Element5)
+    {
+        Element5->data = 2;
+        Element5->next = NULL;
+        PushBackElement_For(&ListToSort, Element5);
+    }
+    
+    // Display the list before sorting
+    printf("list before sorting\n");
+    DisplayElementOfALinkedList(ListToSort);
+
+    // Sort the list by selection
+    sortListBySelection(&ListToSort);
+
+    // Display the list after sorting
+    printf("list after sorting\n");
+    DisplayElementOfALinkedList(ListToSort);
+    
+    // Free Elements
+    if (Element1)
+    {
+        free(Element1);
+    }
+    
+    if (Element2)
+    {
+        free(Element2);
+    }
+    
+    if (Element3)
+    {
+        free(Element3);
+    }
+    
+    if (Element4)
+    {
+        free(Element4);
+    }
+    
+    if (Element5)
+    {
+        free(Element5);
+    }
+    
+    printf("end of the test sortListBySelection\n");
+    
     return 0;
 }
 

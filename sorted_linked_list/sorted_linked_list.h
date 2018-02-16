@@ -31,6 +31,12 @@ void insertDataSortedLinkedList(struct ListElement *list, int data);
 void sortListByInsertion (struct ListElement *listToSort,
                           struct ListElement *sortedList);
 
+/*sorting a linked list by selection by moving element*/
+void sortListBySelection (struct ListElement *listToSort);
+
+/*sorting a linked list by selection by changing data*/
+void sortListBySelectionDataChange (struct ListElement *listToSort);
+
 /* Function PushBackElement_For that add element to a linked list using
    the for loop
 */

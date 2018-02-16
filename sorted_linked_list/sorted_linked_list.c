@@ -124,6 +124,52 @@ void sortListByInsertion (struct ListElement *listToSort,
     }
 }
 
+/*sorting a linked list by selection by moving element*/
+void sortListBySelection (struct ListElement *listToSort)
+{
+    struct Element *elem1; // element that go trough the first loop
+    struct Element *elemPrev1; // previous element to element 1
+    struct Element *elem2; // element that go through the nested loop
+    struct Element *elemPrev2; // previous element to element 2
+    struct Element *elemMin; // elem with min data
+    struct Element *elemPrevMin; // previous element to element 2
+
+    for (elem1 = listToSort->head; elem1 != NULL; elemPrev1 = elemMin,
+                                                  elem1 = elemMin->next)
+    {
+        elemMin = elem1;
+        elemPrev2 = elem1;
+        for (elem2 = elem1->next; elem2 != NULL; elemPrev2 = elem2,
+                                                 elem2 = elem2->next)
+        {
+            // find the minimum value
+            if (elem2->data < elemMin->data)
+            {
+                elemMin = elem2;
+                elemPrevMin = elemPrev2;
+            }
+        }
+        if (elemMin != elem1)
+        {
+            // rebuilt the node of the elemMin which has been moved
+            elemPrevMin->next = elemMin->next;
+
+            // Insert the element before element 1
+            if(elem1 == listToSort->head)
+            {
+                // 1st case: elem1 = head->list
+                listToSort->head = elemMin;
+            }
+            else
+            {
+                // if somwhere else in the list
+                elemPrev1->next = elemMin;
+            }
+            elemMin->next = elem1;
+        }
+    }
+}
+
 /*Function that displays each element of a linked list*/
 void DisplayElementOfALinkedList(struct ListElement list)
 {
@@ -142,6 +188,38 @@ void DisplayElementOfALinkedList(struct ListElement list)
     else
     {
         printf("The linked list is empty\n");
+    }
+}
+
+/*sorting a linked list by selection by changing data*/
+void sortListBySelectionDataChange (struct ListElement *listToSort)
+{
+    // Declaration of an element to go through the list
+    struct Element *elem1;
+    struct Element *elem2;
+    int IntValue;
+
+    //Check that the list is not empty
+    if (listToSort->head == NULL)
+    {
+        printf("The list is empty\n");
+        return;
+    }
+
+    // Go throught the list to sort
+    for (elem1 = listToSort->head; elem1!=NULL; elem1 = elem1->next)
+    {
+        IntValue = elem1->data;
+        for (elem2 = elem1->next; elem2!=NULL; elem2 = elem2->next)
+        {
+            // find the minimum value
+            if (elem2->data < elem1->data)
+            {
+                IntValue = elem2->data;
+                elem2->data = elem1->data;
+                elem1->data = IntValue;
+            }
+        }
     }
 }
 
